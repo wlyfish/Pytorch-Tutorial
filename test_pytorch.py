@@ -3,7 +3,7 @@
 """
  @Time    : 2025/4/2 20:19
  @Author  : wly
- @File    : test_pytroch.py
+ @File    : test_pytorch.py
  @Description: 
 """
 import torch
