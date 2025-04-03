@@ -17,7 +17,6 @@ class COVID19Dataset_2(Dataset):
     """
     对应数据集形式-2： 数据的划分及标签在文件夹中体现
     """
-
     def __init__(self, root_dir, transform=None):
         """
         获取数据集的路径、预处理的方法，此时只需要根目录即可，其余信息通过文件目录获取
@@ -38,6 +37,7 @@ class COVID19Dataset_2(Dataset):
         :return:
         """
         path_img, label = self.img_info[index]
+        # 使用PIL库的Image.open方法打开指定路径的图像文件，并将其转换为灰度图像（'L'模式表示灰度）。
         img = Image.open(path_img).convert('L')
 
         if self.transform is not None:
@@ -47,8 +47,7 @@ class COVID19Dataset_2(Dataset):
 
     def __len__(self):
         if len(self.img_info) == 0:
-            raise Exception("\ndata_dir:{} is a empty dir! Please checkout your path to images!".format(
-                self.root_dir))  # 代码具有友好的提示功能，便于debug
+            raise Exception("\ndata_dir:{} is a empty dir! Please checkout your path to images!".format(self.root_dir))  # 代码具有友好的提示功能，便于debug
         return len(self.img_info)
 
     def _get_img_info(self):
@@ -70,7 +69,6 @@ class COVID19Dataset_3(Dataset):
     """
     对应数据集形式-3： 数据的划分及标签在csv中
     """
-
     def __init__(self, root_dir, path_csv, mode, transform=None):
         """
         获取数据集的路径、预处理的方法。由于数据划分体现在同一份文件中，因此需要设计 train/valid模式
